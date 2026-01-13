@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+            <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style>
+    @import "tailwindcss";
+</style>
+</head>
+<body class="flex justify-center items-center py-2 gap-10">
+    <div class="flex flex-col items-center">
+    <div class="traffic w-[120px] h-[300px] bg-black flex flex-col gap-3 p-2 rounded-xl">
+        <div class="red w-[100px] h-[90px]  rounded-full">
+
+        </div>
+        <div class="green w-[100px] h-[90px]  rounded-full">
+        </div>
+        <div class="orange w-[100px] h-[90px]  rounded-full">
+        </div>
+        
+    </div>
+    <div class="w-[20px] h-[300px] bg-black">
+
+    </div>
+    </div>
+    
+    <div class="flex flex-col items-center">
+    <div class="traffic w-[120px] h-[300px] bg-black flex flex-col gap-3 p-2 rounded-xl">
+        <div class="red w-[100px] h-[90px]  rounded-full">
+
+        </div>
+        <div class="green w-[100px] h-[90px]  rounded-full">
+        </div>
+        <div class="orange w-[100px] h-[90px]  rounded-full">
+        </div>
+        
+    </div>
+    <div class="w-[20px] h-[300px] bg-black">
+
+    </div>
+    </div>
+    <div class="flex flex-col items-center">
+    <div class="traffic w-[120px] h-[300px] bg-black flex flex-col gap-3 p-2 rounded-xl">
+        <div class="red w-[100px] h-[90px]  rounded-full">
+
+        </div>
+        <div class="green w-[100px] h-[90px]  rounded-full">
+        </div>
+        <div class="orange w-[100px] h-[90px]  rounded-full">
+        </div>
+        
+    </div>
+    <div class="w-[20px] h-[300px] bg-black">
+
+    </div>
+    </div>
+    <div class="flex flex-col items-center">
+    <div class="traffic w-[120px] h-[300px] bg-black flex flex-col gap-3 p-2 rounded-xl">
+        <div class="red w-[100px] h-[90px]  rounded-full">
+
+        </div>
+        <div class="green w-[100px] h-[90px]  rounded-full">
+        </div>
+        <div class="orange w-[100px] h-[90px]  rounded-full">
+        </div>
+        
+    </div>
+    <div class="w-[20px] h-[300px] bg-black">
+
+    </div>
+    </div>
+    
+</body>
+ <script>
+  const signals = document.querySelectorAll('.traffic');
+  let index = 0;
+
+  function allred() {
+    signals.forEach(e => {
+      e.querySelector('.red').classList.add('bg-red-700')
+      e.querySelector('.green').classList.remove('bg-green-700')
+      e.querySelector('.orange').classList.remove('bg-orange-700')
+    })
+  }
+  function signal() {
+    allred()
+    const red = signals[index].querySelector('.red');
+    const green = signals[index].querySelector('.green');
+    const orange = signals[index].querySelector('.orange');
+
+    setTimeout(() => {
+      red.classList.remove('bg-red-700');
+      green.classList.add('bg-green-700');
+      setTimeout(() => {
+        green.classList.remove('bg-green-700');
+        orange.classList.add('bg-orange-700');
+        setTimeout(() => {
+          orange.classList.remove('bg-orange-700');
+          index = (index + 1) % signals.length;
+          signal();
+        }, 5000);
+      }, 5000);
+    });
+  }
+  signal();
+</script>
+</html>

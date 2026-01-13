@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+    <center>
+        <p id="para">Second Project</p>
+        <input type="color" name="colorpicker" id="clr" value="#dd9fea">
+    </center>
+        
+    <script> 
+    document.querySelector('#clr').addEventListener('change',(e)=>{// #75t75785
+    document.querySelector('body').style.backgroundColor=e.target.value
+    console.log(e.target.value)
+    })
+    document.querySelector('#para').style.fontSize='100px'
+    document.querySelector('#clr').style.height='50px'
+    document.querySelector('#clr').style.width='50px'
+    </script>
+
+</body>
+</html>

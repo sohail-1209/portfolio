@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculator</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="min-h-screen flex justify-center items-center bg-[url(https://wallpapers.com/images/hd/calculator-2000-x-1333-background-298dndpcecxiri7y.jpg)] bg-cover bg-center px-4">
+
+  <div class="w-full max-w-sm sm:max-w-md bg-[#0b797d]/90 backdrop-blur-md rounded-3xl shadow-2xl p-4">
+
+    <h1 class="text-3xl sm:text-4xl text-white text-center font-bold mb-4">
+      Calculator
+    </h1>
+
+    <!-- Display -->
+    <div class="output h-20 bg-[#f8f4f0] flex items-center justify-end px-4 rounded-2xl mb-4">
+      <p class="user_input text-2xl sm:text-3xl font-mono text-gray-800"></p>
+    </div>
+
+    <!-- Buttons -->
+    <div class="buttons grid grid-cols-4 gap-2 [&>input]:h-14 sm:[&>input]:h-16 [&>input]:rounded-xl [&>input]:text-xl [&>input]:font-semibold [&>input]:bg-[#f83452] [&>input]:text-white hover:[&>input]:bg-[#ff4d6d] active:[&>input]:scale-95 transition">
+
+      <input class="numbers col-span-2" type="button" value="C">
+      <input class="numbers" type="button" value="/">
+      <input class="numbers" type="button" value="*">
+
+      <input class="numbers" type="button" value="7">
+      <input class="numbers" type="button" value="8">
+      <input class="numbers" type="button" value="9">
+      <input class="numbers" type="button" value="-">
+
+      <input class="numbers" type="button" value="4">
+      <input class="numbers" type="button" value="5">
+      <input class="numbers" type="button" value="6">
+      <input class="numbers" type="button" value="+">
+
+      <input class="numbers" type="button" value="1">
+      <input class="numbers" type="button" value="2">
+      <input class="numbers" type="button" value="3">
+      <input class="numbers row-span-2 bg-green-500 hover:bg-green-600" type="button" value="=">
+
+      <input class="numbers col-span-2" type="button" value="0">
+
+    </div>
+
+  </div>
+
+</body>
+
+<script>
+  let total=0
+  let given=""
+  const inp=document.querySelectorAll('.numbers')
+  const operators = ['+', '-', '*', '/']
+
+  inp.forEach(inp => {
+    inp.addEventListener('click', (e) => {
+      if(e.target.value=='='){
+        total = eval(given)
+        given=total.toString()
+        document.querySelector('.user_input').textContent=total
+      }
+      else if(e.target.value=='C'){
+        given=''
+        document.querySelector('.user_input').textContent=given
+        return
+      }
+      else{
+        if(operators.includes(e.target.value) && operators.includes(given.slice(-1))) {
+          return
+        } else {
+          given = given + e.target.value
+          document.querySelector('.user_input').textContent=given
+        }
+      }
+    })
+  })
+</script>
+
+</html>

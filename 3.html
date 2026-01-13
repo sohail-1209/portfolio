@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="min-h-screen flex flex-col justify-center items-center">
+  
+  <h1 id="heading">C L O C K</h1>
+
+</body>
+
+<script>
+  function timer(){
+    let time = new Date().toLocaleString('en-IN',{ hour12: true })
+    return time
+  }
+
+  document.querySelector('body').classList.add(
+    'bg-[#003452]',
+    'text-white',
+    'px-4'
+  )
+
+  document.querySelector("#heading").classList.add(
+    'font-bold',
+    'text-center',
+    'tracking-[0.3em]',
+    'text-3xl',
+    'sm:text-4xl',
+    'md:text-5xl',
+    'lg:text-6xl'
+  )
+
+  setInterval(timer,1000)
+
+  const t = document.createElement('p')
+  document.body.appendChild(t)
+
+  t.classList.add(
+    'mt-6',
+    'text-center',
+    'font-mono',
+    'text-xl',
+    'sm:text-2xl',
+    'md:text-3xl',
+    'lg:text-4xl'
+  )
+
+  setInterval(() => {
+    t.innerText = timer()
+  }, 1000)
+</script>
+
+</html>

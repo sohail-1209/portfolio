@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="min-h-screen flex justify-center items-center bg-gradient-to-br from-slate-900 to-slate-800 p-6">
+
+  <div class="card relative rounded-3xl overflow-hidden shadow-2xl backdrop-blur-md bg-white/10 p-2">
+
+    <img 
+      class="img1 
+             w-[80vw] h-[45vh]
+             sm:w-[60vw] sm:h-[45vh]
+             md:w-[40vw] md:h-[50vh]
+             lg:w-[25vw] lg:h-[55vh]
+             object-cover rounded-2xl
+             transition-opacity duration-700 ease-in-out"
+      src="https://cdn.wallpapersafari.com/28/51/i98rzu.jpg"
+      alt="image1"
+    >
+
+  </div>
+
+  <script>
+    let index=0
+    const images=["https://mcdn.wallpapersafari.com/medium/12/73/BcG7wj.jpg",
+    "https://mcdn.wallpapersafari.com/medium/63/4/GOzQdY.jpg",
+    "https://wallpapers.com/images/high/4k-tech-adejl7ukwd91go3b.webp",
+    "https://wallpapers.com/images/high/4k-tech-twtykjtj0sv4hi62.webp"
+    ]
+    const div=document.querySelector('.card')
+
+    function carousel(){
+      document.querySelector('img').setAttribute('src',images[index])
+      if(index<images.length-1){
+        index=index+1
+      }
+      else{
+        index=0
+      }
+    }
+    setInterval(carousel,3000)
+  </script>
+
+</body>
+</html>

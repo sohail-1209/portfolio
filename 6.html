@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 p-4 sm:p-8">
+
+  <div class="max-w-3xl mx-auto">
+
+    <div class="flex justify-center mb-6">
+      <button class="click px-6 py-3 rounded-2xl bg-[#f00045] text-white font-semibold text-lg hover:bg-[#ff245f] active:scale-95 transition">
+        Click to see posts
+      </button>
+    </div>
+
+    <ol class="orederd space-y-3 list-decimal list-inside bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 text-white shadow-xl">
+      <!-- Posts will appear here -->
+    </ol>
+
+  </div>
+
+</body>
+
+<script>
+  const order=document.querySelector('.orederd')
+
+  async function post(params) {
+    const x = await fetch('https://dummyjson.com/posts')
+    const y = await x.json()
+    console.log(y)
+    let data = y.posts
+    order.innerHTML=''
+
+    data.forEach(e => {
+      console.log(e.id,e.title)
+      const para=document.createElement('li')
+      order.appendChild(para)
+      para.innerText=`${e.id}  - ${e.title}`
+      para.classList.add(
+        'bg-slate-800',
+        'rounded-xl',
+        'px-4',
+        'py-3',
+        'hover:bg-slate-700',
+        'transition'
+      )
+    })
+  }
+
+  document.querySelector('.click').addEventListener('click',()=>{
+    post()
+  })
+</script>
+
+</html>

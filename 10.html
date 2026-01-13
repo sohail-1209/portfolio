@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>To-Do List</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center">
+
+  <div class="w-full max-w-md bg-slate-900 rounded-2xl shadow-xl p-6 space-y-6">
+    
+    <h1 class="text-3xl font-bold text-center text-white">
+      🧾 To Do List
+    </h1>
+
+    <div class="flex gap-2">
+      <input 
+        type="text"
+        placeholder="Add a new task..."
+        class="flex-1 px-4 py-2 rounded-xl bg-slate-800 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      />
+      <button 
+        class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold transition"
+      >
+        Add
+      </button>
+    </div>
+
+    <ul class="list space-y-3">
+    </ul>
+
+  </div>
+
+</body>
+
+<script>
+  const input = document.querySelector('input')
+  const list = document.querySelector('.list')
+  const button = document.querySelector('button')
+
+  let todos = JSON.parse(localStorage.getItem('local')) || []
+
+  function saveTodos() {
+    localStorage.setItem('local', JSON.stringify(todos))
+  }
+
+  function display() {
+    list.innerHTML = ''
+    todos.forEach((todo,index)=> {
+      const li = document.createElement('li')
+      li.className = "flex items-center justify-between bg-slate-800 px-4 py-3 rounded-xl text-white"
+      li.innerHTML = `
+        <span class="break-words">${todo}</span>
+        <div class="flex gap-2">
+          <button 
+            onclick="edit(${index})"
+            class="px-2 py-1 rounded-lg  transition"
+          >✏️</button>
+          <button 
+            onclick="del(${index})"
+            class="px-2 py-1 rounded-lg hover:bg-red-600 transition"
+          >🗑️</button>
+        </div>
+      `
+      list.append(li)
+    })
+  }
+
+  button.addEventListener('click', () => {
+    if (input.value.trim() === '') return
+
+    todos.push(input.value)
+    saveTodos()
+    display()
+    input.value = ''
+  })
+
+  display()
+
+  function del(index) {
+    todos.splice(index, 1)
+    saveTodos()
+    display()
+  }
+
+  function edit(index) {
+    input.value = todos[index]
+    todos.splice(index, 1)
+    saveTodos()
+    display()
+  }
+</script>
+
+</html>
