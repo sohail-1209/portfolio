@@ -4,5 +4,5 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: '/firstapp/', // 👈 MUST match repo or folder name
+  base: '/portfolio/firstapp/',
 })
